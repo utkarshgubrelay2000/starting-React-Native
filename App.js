@@ -34,7 +34,7 @@ export default class App extends Component{
  { return (
     <View style={styles.container}>
      <Appbar.Header style={{backgroundColor:"purple"}}>
-       <Appbar.Content title="Cast !!!!!! Weather Forecast" style={styles.appBarFont} />
+       <Appbar.Content title="Casting !!!!!! Weather Forecasting" style={styles.appBarFont} />
     </Appbar.Header>
 
     <View style={styles.textController}>
