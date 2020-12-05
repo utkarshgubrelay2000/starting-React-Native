@@ -54,9 +54,11 @@ export default class App extends Component{
       onChangeText={text => this.setState({city:text})}
     />
       </View>
+      
+          <Animated.View style={{opacity:this.state.fadeValue}}>
       <Button icon="camera" mode="contained"  style={{backgroundColor:'purple',margin:20}} onPress={() => this.submit()}>
     Press me
-  </Button>
+  </Button> </Animated.View>
  {this.state.err?<Text style={styles.Head} > {this.state.err}</Text>:
  <>
  <Text style={{justifyContent:"center",textAlign:"center"}}>
