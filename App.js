@@ -3,15 +3,23 @@ import React, { Component} from 'react';
 import { StyleSheet, Text, View,Animated } from 'react-native';
 import { Appbar,TextInput,Button,Avatar } from 'react-native-paper';
 import { Platform } from 'react-native';
+import Preloader from './component/Preloader'
 const MORE_ICON = Platform.OS === 'ios' ? 'dots-horizontal' : 'dots-vertical';
+import './App.css'
 export default class App extends Component{
   state={
     fname:"",
-    city:"",err:"",temp:0,clouds:"",fadeValue: new Animated.Value(0)
+    city:"",err:"",temp:0,clouds:"",fadeValue: new Animated.Value(0),
+    preloader:true
   }
  
  componentDidMount(){
    Animated.timing(this.state.fadeValue,{toValue:1,duration:1000}).start()
+
+   setTimeout(() => {
+    this.setState({preloader:false})
+  }, 4000);
+
   }
   submit=()=>{
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${this.state.city}&appid=18f9ea233fd551af72d31749f24b0658`)
@@ -29,10 +37,14 @@ export default class App extends Component{
     )
 
   }
+ 
+
   render()
 
  { return (
     <View style={styles.container}>
+{this.state.preloader?<Preloader  borderColor="white" zoomerBgc="white" textColor="white" />:
+<div className='Drawer'>
      <Appbar.Header style={{backgroundColor:"purple"}}>
        <Appbar.Content title="Casting !!!!!! Weather Forecasting" style={styles.appBarFont} />
     </Appbar.Header>
@@ -87,7 +99,8 @@ export default class App extends Component{
 <Text style={styles.footer}>
   App Build by Utkarsh Gubrelay. As a Starting Native Project
 </Text>
-      <StatusBar style="auto" />
+      <StatusBar style="auto" /> </div>
+}
     </View>
   );}
 }

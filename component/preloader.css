@@ -1,0 +1,90 @@
+
+.preloader{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+   
+  }
+  .preloader .container{
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+    position: relative;
+  }
+  .preloader .rot{
+    position: absolute;
+   animation: rot infinite 1s  ;
+    border-right: .2rem white solid;
+    width: 15rem;
+    height: 15rem;
+        /* text-align: center; */
+        /* justify-content: center; */
+        /* justify-items: end; */
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+      }
+      @keyframes rot{
+    0%{
+      transform: rotate(0deg);
+    }
+    100%{
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes zoomer{
+    0%{
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+    }
+    20%{
+      border-radius: 45%;
+    }
+    30%{
+      border-radius: 40%;
+    }
+    40%{
+      border-radius: 35%;
+    }
+    60%{
+      border-radius: 25%;
+    }
+    50%{
+      border-radius: 30%;
+    }
+    70%{
+      border-radius: 20%;
+    }
+    80%{
+      border-radius: 15%;
+    }
+    100%{
+      border-radius: 0%;
+      width: 100vw;
+      height: 100vh;
+      
+    }
+  }
+  .preloader .zoomer{
+    background-color: white;
+    border-radius: 50%;
+    width: .05rem;
+    height: .05rem;
+    z-index: -3;
+    animation: zoomer 2s forwards;
+    animation-delay: 2s;
+  }
+  
+  .preloader h3{
+    color: white;
+    position: absolute;
+    font-family: 'montserrat',cursive;
+    font-weight: 300;
+  }
+
+
+  
+  
