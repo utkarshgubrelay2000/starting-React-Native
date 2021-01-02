@@ -27,12 +27,13 @@ function Prelouder ({navigation}){
       </>
 ) 
 }
-function Contact (){
+function Contact ({navigation}){
   return(
       <View >
          <Text>
-           aao bhai
+           aao bhai 
            </Text> 
+           <Button title='open' onPress={navigation.toggleDrawer()}/>
       </View>
 ) 
 }
@@ -41,8 +42,8 @@ function HomeScreen({route,navigation}) {
  const [count, setCount] = React.useState(0);
  React.useLayoutEffect(() => {
   navigation.setOptions({
-    headerRight: () => (
-      <Button onPress={() => setCount(c => c + 1)} title="Update count" />
+    headerLeft: () => (
+      <Button onPress={navigation.toggleDrawer()} title='k'/>
     ),
   });
 }, [navigation]);
@@ -51,8 +52,7 @@ function HomeScreen({route,navigation}) {
       <Text>Home Screen screem  {count} </Text>
       <Button
         title="Go to Details"
-        
-        onPress={() => navigation.navigate('Home2')}
+        onPress={() => navigation.navigate('About')}
       />
     </View>
   );
@@ -62,8 +62,9 @@ const Drawer =  createDrawerNavigator();
 const Stack =  createStackNavigator();
 const ContactStackNavigator = () => {
   return (
-    <Stack.Navigator  screenOptions={Prelouder}>
+    <Stack.Navigator >
       <Stack.Screen name="Contact" component={HomeScreen} />
+      <Stack.Screen name="About" component={Prelouder} />
     </Stack.Navigator>
   );
 }
