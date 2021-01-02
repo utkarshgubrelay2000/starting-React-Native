@@ -6,10 +6,13 @@ import { StyleSheet, Text, View,Animated,Button } from 'react-native';
 import { Platform } from 'react-native';
 //import Preloader from './component/Preloader'
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import {  createDrawerNavigator  } from '@react-navigation/drawer';
+import {  createStackNavigator  } from '@react-navigation/stack';
 
 function Prelouder ({navigation}){
+  
   return(
+
     <>
       <View style={styles.preloader} >
         <Text style={styles.preloaderh3}>
@@ -17,7 +20,8 @@ function Prelouder ({navigation}){
         </Text>
        <Button
       title="Proceed"
-      onPress={() => navigation.navigate('Home',{ otherParam: 'anything you want here',name:'guv'})}
+
+      onPress={() => navigation.navigate('Home',{ otherParam: 'anything you want here',name:'guv'}) }
       />
       </View>
       </>
@@ -44,48 +48,34 @@ function HomeScreen({route,navigation}) {
 }, [navigation]);
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen screem {route.params.otherParam} {count} </Text>
+      <Text>Home Screen screem  {count} </Text>
       <Button
         title="Go to Details"
         
-        onPress={() => navigation.navigate('About',{'i':'ilove u'})}
+        onPress={() => navigation.navigate('Home2')}
       />
     </View>
   );
 }
 
-const Stack = createStackNavigator();
-
-function App({route}) {
+const Drawer =  createDrawerNavigator();
+const Stack =  createStackNavigator();
+const ContactStackNavigator = () => {
+  return (
+    <Stack.Navigator  screenOptions={Prelouder}>
+      <Stack.Screen name="Contact" component={HomeScreen} />
+    </Stack.Navigator>
+  );
+}
+function App() {
   return (
     <NavigationContainer>
-       <Stack.Navigator
-      screenOptions={{
-        headerStyle: {
-          backgroundColor: '#f4511e',
-        },
-        headerTintColor: '#fff',
-        headerTitleStyle: {
-          fontWeight: 'bold',
-        },
-      }}
-    >
-         <Stack.Screen name="About" component={Prelouder}  />
-        <Stack.Screen name="Home" component={HomeScreen}  options={{title: 'hh' 
-         ,headerRight: () => (
-          <Button
-            onPress={() => alert('This is a button!')}
-            title="Info"
-            color="#fff"
-          />
-        ),
-        
       
-      }}
-        
-        />
-        <Stack.Screen name="Contact" component={Contact} />
-      </Stack.Navigator>
+      <Drawer.Navigator initialRouteName="Home">
+
+        <Drawer.Screen name="Home" component={ContactStackNavigator} />
+        <Drawer.Screen name="Home2" component={Contact} />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 }
