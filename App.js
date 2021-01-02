@@ -16,7 +16,7 @@ function Prelouder ({navigation}){
         </Text>
        <Button
       title="Proceed"
-      onPress={() => navigation.navigate('Home')}
+      onPress={() => navigation.navigate('Home',{ otherParam: 'anything you want here',})}
       />
       </View>
       </>
@@ -31,13 +31,14 @@ function Contact (){
       </View>
 ) 
 }
-function HomeScreen({navigation}) {
+function HomeScreen({route,navigation}) {
+ console.log(route)
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen screem</Text>
+      <Text>Home Screen screem {route.params.otherParam} </Text>
       <Button
         title="Go to Details"
-        onPress={() => navigation.navigate('About')}
+        onPress={() => navigation.navigate('About',{'i':'ilove u'})}
       />
     </View>
   );
