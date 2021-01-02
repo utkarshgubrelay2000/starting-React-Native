@@ -16,7 +16,7 @@ function Prelouder ({navigation}){
         </Text>
        <Button
       title="Proceed"
-      onPress={() => navigation.navigate('Home',{ otherParam: 'anything you want here',})}
+      onPress={() => navigation.navigate('Home',{ otherParam: 'anything you want here',name:'guv'})}
       />
       </View>
       </>
@@ -46,12 +46,12 @@ function HomeScreen({route,navigation}) {
 
 const Stack = createStackNavigator();
 
-function App() {
+function App({route}) {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-         <Stack.Screen name="About" component={Prelouder} />
-        <Stack.Screen name="Home" component={HomeScreen}  options={{ title: 'My home' }} />
+         <Stack.Screen name="About" component={Prelouder}  />
+        <Stack.Screen name="Home" component={HomeScreen}  options={({ route }) => ({ title: route.params.name })} />
         <Stack.Screen name="Contact" component={Contact} />
       </Stack.Navigator>
     </NavigationContainer>
