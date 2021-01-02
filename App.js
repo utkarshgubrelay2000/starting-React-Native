@@ -7,6 +7,7 @@ import { Platform } from 'react-native';
 //import Preloader from './component/Preloader'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+
 function Prelouder ({navigation}){
   return(
     <>
@@ -33,11 +34,20 @@ function Contact (){
 }
 function HomeScreen({route,navigation}) {
  console.log(route)
+ const [count, setCount] = React.useState(0);
+ React.useLayoutEffect(() => {
+  navigation.setOptions({
+    headerRight: () => (
+      <Button onPress={() => setCount(c => c + 1)} title="Update count" />
+    ),
+  });
+}, [navigation]);
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen screem {route.params.otherParam} </Text>
+      <Text>Home Screen screem {route.params.otherParam} {count} </Text>
       <Button
         title="Go to Details"
+        
         onPress={() => navigation.navigate('About',{'i':'ilove u'})}
       />
     </View>
@@ -49,9 +59,31 @@ const Stack = createStackNavigator();
 function App({route}) {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+       <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: '#f4511e',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      }}
+    >
          <Stack.Screen name="About" component={Prelouder}  />
-        <Stack.Screen name="Home" component={HomeScreen}  options={({ route }) => ({ title: route.params.name })} />
+        <Stack.Screen name="Home" component={HomeScreen}  options={{title: 'hh' 
+         ,headerRight: () => (
+          <Button
+            onPress={() => alert('This is a button!')}
+            title="Info"
+            color="#fff"
+          />
+        ),
+        
+      
+      }}
+        
+        />
         <Stack.Screen name="Contact" component={Contact} />
       </Stack.Navigator>
     </NavigationContainer>
