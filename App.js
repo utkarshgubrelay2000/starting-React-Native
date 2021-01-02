@@ -51,7 +51,7 @@ function App() {
     <NavigationContainer>
       <Stack.Navigator>
          <Stack.Screen name="About" component={Prelouder} />
-        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Home" component={HomeScreen}  options={{ title: 'My home' }} />
         <Stack.Screen name="Contact" component={Contact} />
       </Stack.Navigator>
     </NavigationContainer>
