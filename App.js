@@ -8,7 +8,7 @@ import { Platform } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import {  createDrawerNavigator  } from '@react-navigation/drawer';
 import { Ionicons,AntDesign } from '@expo/vector-icons';
-import  Auth from './component/Login'
+import  Auth from './component/Auth'
 
 function HomeScreen({route,navigation}) {
  //const [count, setCount] = React.useState(0);

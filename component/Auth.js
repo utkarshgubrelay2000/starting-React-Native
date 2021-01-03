@@ -2,11 +2,7 @@ import 'react-native-gesture-handler';
 
 import React, { Component, useState} from 'react';
 import { StyleSheet, Text, View,Animated,Button } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
-import { Platform } from 'react-native';
-//import Preloader from './component/Preloader'
-import { NavigationContainer } from '@react-navigation/native';
-import {  createDrawerNavigator  } from '@react-navigation/drawer';
+import { FontAwesome} from '@expo/vector-icons';
 import {  createStackNavigator  } from '@react-navigation/stack';
 
  function Login({navigation}) {
@@ -25,7 +21,7 @@ import {  createStackNavigator  } from '@react-navigation/stack';
     return (
       <View>
           <Text>
-              SignUpjjj
+              SignUp
           </Text>
               <Button onPress={()=>{
                   navigation.navigate("Login")
@@ -45,16 +41,17 @@ const ContactStackNavigator = ({route,navigation}) => {
           backgroundColor: '#f4511e',
         },
         headerTintColor: '#fff',
-        headerLeft:()=>(
-            <FontAwesome.Button name="check" backgroundColor="transparent" onPress={()=>{
-                if(authType==='Register'){
-                   setAuthType('Login');
-                navigation.navigate('Login',{userName:"Utkarsh"})}
-                else{
-                    setAuthType("Register")
-                    navigation.navigate('SignUp',{userName:"Utkarsh"})
-                }
-        }}/> 
+        headerRight:()=>(
+          <FontAwesome name="sign-in" size={24} color="black"   onPress={()=>{
+            if(authType==='Register'){
+               setAuthType('Login');
+            navigation.navigate('Login',{userName:"Utkarsh"})}
+            else{
+                setAuthType("Register")
+                navigation.navigate('SignUp',{userName:"Utkarsh"})
+            }
+    }}/>
+           
             
         )
         }}>    
