@@ -1,8 +1,9 @@
 import 'react-native-gesture-handler';
 
-import React, { Component} from 'react';
-import { StyleSheet, Text, View,Button,Image } from 'react-native';
-
+import React, { Component, useState} from 'react';
+import { StyleSheet, Text, View,Button,Image
+ } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Platform } from 'react-native';
 //import Preloader from './component/Preloader'
 import { NavigationContainer } from '@react-navigation/native';
@@ -19,12 +20,57 @@ function HomeScreen({route,navigation}) {
 //     ),
 //   });
 // }, [navigation]);
+const [value,setValue]=useState("hello")
+_delete =async ()=>{
+  try {
+    await AsyncStorage.removeItem('TASKS');}
+    catch(err){
+      console.log(err)
+    }
+    const value = await AsyncStorage.getItem('TASKS');
+   
+      console.log(value);
+    
+    
+}
+_getData=async ()=>{
+  try {
+    const value = await AsyncStorage.getItem('TASKS');
+    if (value !== null) {
+      // We have data!!
+      console.log(value);
+      setValue(value)
+    }
+  } catch (error) {
+    // Error retrieving data
+  }
+}
+_storeData = async () => {
+  try {
+    await AsyncStorage.setItem(
+      'TASKS',
+      'I like to save it.'
+    );
+    
+  } catch (error) {
+    // Error saving data
+  }
+};
   return (
     <View style={{ flex: 3, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen Screen {route.params!==undefined?<Text> {route.params.userName}</Text>:null} </Text>
+      <Text>Home Screen Screen {value} {route.params!==undefined?<Text> {route.params.userName}</Text>:null} </Text>
       <Button
-        title="Auth"
-        onPress={() => navigation.navigate('Auth',{details:"helo"})}
+        title="Store"
+        onPress={_storeData}
+      />
+      <Button
+        title="Get"
+        onPress={_getData
+        }
+      />
+      <Button
+        title="Delete"
+        onPress={_delete}
       />
     <Image
         source={{
